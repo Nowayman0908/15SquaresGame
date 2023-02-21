@@ -41,6 +41,7 @@ public class MainActivity extends AppCompatActivity {
             SM.buttonText[s].setText(String.valueOf(SM.squareNumOrder[s]));
         }
         SV.setOnClick(SC);
+        SC.orderCheck();
 
     }
 }

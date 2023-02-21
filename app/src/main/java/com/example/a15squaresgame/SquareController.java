@@ -44,6 +44,7 @@ public void randomCheck(){
     }
 }
 
+//Used to change know the state of the correctness of tile position.
 public void orderCheck(){
     for(int u = 0; u < SM.totalNumSquare;u++){
         if(SM.corrSquareNumOrder[u] == SM.squareNumOrder[u]){
@@ -53,6 +54,10 @@ public void orderCheck(){
             SM.correctSquare[u] = false;
         }
     }
+}
+
+public void posSwap(){
+
 }
 
     @Override
