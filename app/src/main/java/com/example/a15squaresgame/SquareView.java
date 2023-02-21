@@ -10,7 +10,7 @@ public class SquareView extends SurfaceView {
     Paint borderSquareCol = new Paint();
     public static final float borderWidth = 1200.0f;
     public static final float top = 1200.0f;
-    public static final float bottom = 1200.0f;
+    public static final float bottom = 120.0f;
     public static final float borderLeft = 1200.0f;
 
     private SquareModel SM;
@@ -24,6 +24,7 @@ public class SquareView extends SurfaceView {
     @Override
     public void onDraw(Canvas canvas) {
         canvas.drawRect(borderLeft,top,borderLeft + borderWidth, bottom, borderSquareCol);
+        //canvas.drawRect();
     }
 
     public SquareModel getSquareModel()
