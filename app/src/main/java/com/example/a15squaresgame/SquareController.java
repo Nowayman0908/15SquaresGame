@@ -1,11 +1,12 @@
 package com.example.a15squaresgame;
 
 import android.util.Log;
+import android.view.View;
 import android.widget.SeekBar;
 
 import java.util.Random;
 
-public class SquareController implements SeekBar.OnSeekBarChangeListener{
+public class SquareController implements SeekBar.OnSeekBarChangeListener, View.OnClickListener{
 private SquareView SV;
 private SquareModel SM;
 
@@ -13,17 +14,15 @@ public SquareController(SquareView initSV){
     SV = initSV;
     SM = SV.getSquareModel();
     //Initializes the correct base to compare the squares to.
-    for(int i = 0; i < SM.totalNumSquare; i++){
+    for(int i = 1; i < SM.totalNumSquare + 1; i++){
         SM.corrSquareNumOrder[i] = i;
     }
     //Initializes the random Square Order.
-    for(int j = 0; j < SM.setNumSquare; j++){
-        for(int y = 0; j < SM.setNumSquare; y++){
+    for(int j = 0; j < SM.totalNumSquare; j++){
             SM.randomNum = SM.random.nextInt(SM.totalNumSquare);
             if(randomCheck()) {
-                SM.SquareNumOrder[j][y] = SM.randomNum;
+                SM.squareNumOrder[j] = SM.randomNum;
             }
-        }
     }
 
 }
@@ -56,5 +55,12 @@ public boolean randomCheck(){
     @Override
     public void onStopTrackingTouch(SeekBar seekBar) {
 
+    }
+
+    @Override
+    public void onClick(View Button) {
+        //Log.d("");
+
+        SV.invalidate();
     }
 }

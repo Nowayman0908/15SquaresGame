@@ -34,7 +34,7 @@
             android:layout_height="match_parent" >
 
             <Button
-                android:id="@+id/button"
+                android:id="@+id/button1"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="Button" />
@@ -67,7 +67,7 @@
                 android:id="@+id/button5"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="Button" />
+                android:text="" />
 
             <Button
                 android:id="@+id/button7"
@@ -140,11 +140,18 @@
                 android:text="Button" />
 
             <Button
-                android:id="@+id/button17"
+                android:id="@+id/button16"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="Button" />
         </TableRow>
+        <!--The custom Surface View SquareView. -->
+        <com.example.a15squaresgame.SquareView
+            android:id="@+id/squareview"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+        />
     </TableLayout>
 
 </androidx.constraintlayout.widget.ConstraintLayout>

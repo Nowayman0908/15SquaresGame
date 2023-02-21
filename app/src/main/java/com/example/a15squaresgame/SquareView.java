@@ -5,6 +5,7 @@ import android.graphics.Color;
 import android.graphics.Paint;
 import android.util.AttributeSet;
 import android.view.SurfaceView;
+import android.widget.Button;
 
 public class SquareView extends SurfaceView {
     Paint borderSquareCol = new Paint();
@@ -23,8 +24,19 @@ public class SquareView extends SurfaceView {
     }
     @Override
     public void onDraw(Canvas canvas) {
-        canvas.drawRect(borderLeft,top,borderLeft + borderWidth, bottom, borderSquareCol);
+        //Worry about later, the button is all that matters at the moment.
+        //canvas.drawRect(borderLeft,top,borderLeft + borderWidth, bottom, borderSquareCol);
         //canvas.drawRect();
+    }
+
+    public void addButtons(int p, Button button){
+        SM.buttonArr[p] = button;
+    }
+
+    public void setOnClick(SquareController SC){
+        for(int f = 0; f < SM.totalNumSquare; f++){
+            SM.buttonArr[f].setOnClickListener(SC);
+        }
     }
 
     public SquareModel getSquareModel()
