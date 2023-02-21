@@ -12,6 +12,7 @@ public class SquareModel {
     public int[] squareNumOrder = new int[totalNumSquare];
     public ArrayList randomCheck = new ArrayList();
     public int randomNum;
+    public boolean[] correctSquare = new boolean[totalNumSquare];
     Random random = new Random();
     public Button [] buttonArr = new Button[totalNumSquare];
     public TextView [] buttonText = new TextView[totalNumSquare];

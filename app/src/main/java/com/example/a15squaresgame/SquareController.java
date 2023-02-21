@@ -14,30 +14,44 @@ public SquareController(SquareView initSV){
     SV = initSV;
     SM = SV.getSquareModel();
     //Initializes the correct base to compare the squares to.
-    for(int i = 1; i < SM.totalNumSquare + 1; i++){
+    for(int i = 1; i < SM.totalNumSquare; i++){
         SM.corrSquareNumOrder[i] = i;
     }
     //Initializes the random Square Order.
     for(int j = 0; j < SM.totalNumSquare; j++){
-            SM.randomNum = SM.random.nextInt(SM.totalNumSquare);
-            if(randomCheck()) {
-                SM.squareNumOrder[j] = SM.randomNum;
-            }
+        //Note, the number 16 will represent the empty square.
+            SM.randomNum = SM.random.nextInt(SM.totalNumSquare+1);
+            randomCheck();
+            SM.squareNumOrder[j] = SM.randomNum;
+
+    }
+    //Initializes all the buttons as if they were not correct.
+    for(int b = 0; b < SM.totalNumSquare; b++){
+        SM.correctSquare[b] = false;
     }
 
 }
 
-public boolean randomCheck(){
+public void randomCheck(){
     //Checks the Array List randomCheck the random number has already been assigned to a square.
-    if(SM.randomCheck.contains(SM.randomNum)){
+    if(SM.randomCheck.contains(SM.randomNum) || SM.randomNum == 0){
         SM.randomNum = SM.random.nextInt(SM.totalNumSquare);
         //Recalls the method and generates a new random number if the number is in randomCheck.
         randomCheck();
-        return false;
     }
     else{
         SM.randomCheck.add(SM.randomNum);
-        return true;
+    }
+}
+
+public void orderCheck(){
+    for(int u = 0; u < SM.totalNumSquare;u++){
+        if(SM.corrSquareNumOrder[u] == SM.squareNumOrder[u]){
+            SM.correctSquare[u] = true;
+        }
+        else{
+            SM.correctSquare[u] = false;
+        }
     }
 }
 
