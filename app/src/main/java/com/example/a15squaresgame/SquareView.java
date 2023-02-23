@@ -34,7 +34,7 @@ public class SquareView extends SurfaceView {
     }
 
     public void setOnClick(SquareController SC){
-        for(int f = 0; f < SM.totalNumSquare; f++){
+        for(int f = 0; f < SM.totalNumSquare+1; f++){
             SM.buttonArr[f].setOnClickListener(SC);
         }
     }

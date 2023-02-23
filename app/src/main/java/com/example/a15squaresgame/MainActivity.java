@@ -16,9 +16,6 @@ public class MainActivity extends AppCompatActivity {
         SquareController SC = new SquareController(SV);
         SquareModel SM = SV.getSquareModel();
 
-        SeekBar numSquaresBar = findViewById(R.id.numSquareSeekBar);
-        numSquaresBar.setOnSeekBarChangeListener(SC);
-
         //Spain without the s.
         SV.addButtons(0,findViewById(R.id.button1));
         SV.addButtons(1,findViewById(R.id.button2));
@@ -36,9 +33,15 @@ public class MainActivity extends AppCompatActivity {
         SV.addButtons(13,findViewById(R.id.button14));
         SV.addButtons(14,findViewById(R.id.button15));
         SV.addButtons(15,findViewById(R.id.button16));
+        SV.addButtons(16,findViewById(R.id.button17));
         for(int s = 0; s < SM.totalNumSquare; s++) {
             SM.buttonText[s] = SM.buttonArr[s];
-            SM.buttonText[s].setText(String.valueOf(SM.squareNumOrder[s]));
+            if(!String.valueOf(SM.squareNumOrder[s]).equals("16")) {
+                SM.buttonText[s].setText(String.valueOf(SM.squareNumOrder[s]));
+            }
+            else{
+                SM.buttonText[s].setText("");
+            }
         }
         SV.setOnClick(SC);
         SC.orderCheck();

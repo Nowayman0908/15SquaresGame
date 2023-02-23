@@ -6,7 +6,7 @@ import android.widget.SeekBar;
 
 import java.util.Random;
 
-public class SquareController implements SeekBar.OnSeekBarChangeListener, View.OnClickListener{
+public class SquareController implements  View.OnClickListener{
 private SquareView SV;
 private SquareModel SM;
 
@@ -17,14 +17,7 @@ public SquareController(SquareView initSV){
     for(int i = 1; i < SM.totalNumSquare; i++){
         SM.corrSquareNumOrder[i] = i;
     }
-    //Initializes the random Square Order.
-    for(int j = 0; j < SM.totalNumSquare; j++){
-        //Note, the number 16 will represent the empty square.
-            SM.randomNum = SM.random.nextInt(SM.totalNumSquare+1);
-            randomCheck();
-            SM.squareNumOrder[j] = SM.randomNum;
-
-    }
+    randomizeSquares();
     //Initializes all the buttons as if they were not correct.
     for(int b = 0; b < SM.totalNumSquare; b++){
         SM.correctSquare[b] = false;
@@ -34,17 +27,26 @@ public SquareController(SquareView initSV){
 
 public void randomCheck(){
     //Checks the Array List randomCheck the random number has already been assigned to a square.
-    if(SM.randomCheck.contains(SM.randomNum) || SM.randomNum == 0){
-        SM.randomNum = SM.random.nextInt(SM.totalNumSquare);
-        //Recalls the method and generates a new random number if the number is in randomCheck.
-        randomCheck();
+    if(SM.randomCheck.contains(SM.randomNum)){
+        while(SM.randomCheck.contains(SM.randomNum)) {
+            SM.randomNum = SM.random.nextInt(SM.totalNumSquare);
+        }
     }
     else{
         SM.randomCheck.add(SM.randomNum);
     }
 }
 
-//Used to change know the state of the correctness of tile position.
+public void randomizeSquares() {
+    //Initializes the random Square Order.
+    for (int j = 0; j < SM.totalNumSquare; j++) {
+        //Note, the number 16 will represent the empty square.
+        SM.randomNum = SM.random.nextInt(SM.totalNumSquare + 1);
+        randomCheck();
+        SM.squareNumOrder[j] = SM.randomNum;
+    }
+}
+
 public void orderCheck(){
     for(int u = 0; u < SM.totalNumSquare;u++){
         if(SM.corrSquareNumOrder[u] == SM.squareNumOrder[u]){
@@ -56,29 +58,23 @@ public void orderCheck(){
     }
 }
 
-public void posSwap(){
-
+public void squareFlip(int index, int indexSwitch){
+    if(index == indexSwitch+1 || index == indexSwitch-1 || index == indexSwitch + 4 || index ==indexSwitch - 4) {
+        int placeHolder = -420;
+        placeHolder = SM.squareNumOrder[index];
+        SM.squareNumOrder[index] = SM.squareNumOrder[indexSwitch];
+        SM.squareNumOrder[indexSwitch] = placeHolder;
+    }
 }
 
     @Override
-    public void onProgressChanged(SeekBar seekBar, int i, boolean b) {
-        SM.setNumSquare = i;
-        SV.invalidate();
-    }
-
-    @Override
-    public void onStartTrackingTouch(SeekBar seekBar) {
-
-    }
-
-    @Override
-    public void onStopTrackingTouch(SeekBar seekBar) {
-
-    }
-
-    @Override
     public void onClick(View Button) {
-        //Log.d("");
+        if(Button == SM.buttonArr[16]){
+            randomizeSquares();
+            for(int s = 0; s < SM.totalNumSquare; s++) {
+                SM.buttonText[s].setText(String.valueOf(SM.squareNumOrder[s]));
+            }
+        }
 
         SV.invalidate();
     }
