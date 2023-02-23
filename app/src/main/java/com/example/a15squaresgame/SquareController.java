@@ -22,21 +22,23 @@ public SquareController(SquareView initSV){
     for(int b = 0; b < SM.totalNumSquare; b++){
         SM.correctSquare[b] = false;
     }
-
 }
 
 public void randomCheck(){
     //Checks the Array List randomCheck the random number has already been assigned to a square.
-    if(SM.randomCheck.contains(SM.randomNum)){
-        while(SM.randomCheck.contains(SM.randomNum)) {
+        while(arrCheck(SM.randomNum) || SM.randomNum == 0) {
             SM.randomNum = SM.random.nextInt(SM.totalNumSquare);
         }
-    }
-    else{
-        SM.randomCheck.add(SM.randomNum);
-    }
 }
 
+public boolean arrCheck(int num){
+    for(int t = 0; t < SM.totalNumSquare; t++){
+        if(SM.squareNumOrder[t] == num){
+            return true;
+        }
+    }
+    return false;
+}
 public void randomizeSquares() {
     //Initializes the random Square Order.
     for (int j = 0; j < SM.totalNumSquare; j++) {
@@ -66,16 +68,23 @@ public void squareFlip(int index, int indexSwitch){
         SM.squareNumOrder[indexSwitch] = placeHolder;
     }
 }
+public void rewriteButtons() {
+    for (int s = 0; s < SM.totalNumSquare; s++) {
+        SM.buttonText[s] = SM.buttonArr[s];
+        if (!String.valueOf(SM.squareNumOrder[s]).equals("16")) {
+            SM.buttonText[s].setText(String.valueOf(SM.squareNumOrder[s]));
+        } else {
+            SM.buttonText[s].setText("");
+        }
+    }
+}
 
     @Override
     public void onClick(View Button) {
         if(Button == SM.buttonArr[16]){
+            SM.squareNumOrder = new int[SM.totalNumSquare];
             randomizeSquares();
-            for(int s = 0; s < SM.totalNumSquare; s++) {
-                SM.buttonText[s].setText(String.valueOf(SM.squareNumOrder[s]));
-            }
+            rewriteButtons();
         }
-
-        SV.invalidate();
     }
 }

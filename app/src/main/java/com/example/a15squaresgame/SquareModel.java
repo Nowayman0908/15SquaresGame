@@ -10,12 +10,10 @@ public class SquareModel {
     public int totalNumSquare = setNumSquare * setNumSquare;
     public int[] corrSquareNumOrder = new int[totalNumSquare];
     public int[] squareNumOrder = new int[totalNumSquare];
-    public ArrayList randomCheck = new ArrayList();
     public int randomNum;
     public boolean[] correctSquare = new boolean[totalNumSquare];
     Random random = new Random();
     public Button [] buttonArr = new Button[totalNumSquare+1];
     public TextView [] buttonText = new TextView[totalNumSquare];
-    public TextView buttonChange;
 
 }
