@@ -14,7 +14,7 @@ public SquareController(SquareView initSV){
     SV = initSV;
     SM = SV.getSquareModel();
     //Initializes the correct base to compare the squares to.
-    for(int i = 1; i < SM.totalNumSquare; i++){
+    for(int i = 1; i < SM.totalNumSquare + 1; i++){
         SM.corrSquareNumOrder[i] = i;
     }
     randomizeSquares();
@@ -74,6 +74,7 @@ public void rewriteButtons() {
         if (!String.valueOf(SM.squareNumOrder[s]).equals("16")) {
             SM.buttonText[s].setText(String.valueOf(SM.squareNumOrder[s]));
         } else {
+            //Used to set the "empty" Square which should be moved.
             SM.buttonText[s].setText("");
         }
     }
@@ -81,6 +82,7 @@ public void rewriteButtons() {
 
     @Override
     public void onClick(View Button) {
+    //The reset buttons functionality to reset the Squares to a random order.
         if(Button == SM.buttonArr[16]){
             SM.squareNumOrder = new int[SM.totalNumSquare];
             randomizeSquares();

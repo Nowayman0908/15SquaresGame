@@ -8,7 +8,7 @@ import android.view.SurfaceView;
 import android.widget.Button;
 
 public class SquareView extends SurfaceView {
-    Paint borderSquareCol = new Paint();
+    //Paint borderSquareCol = new Paint();
     public static final float borderWidth = 1200.0f;
     public static final float top = 1200.0f;
     public static final float bottom = 120.0f;
@@ -20,7 +20,7 @@ public class SquareView extends SurfaceView {
         super(context,attrs);
         SM = new SquareModel();
         setWillNotDraw(false);
-        borderSquareCol.setColor(0xFF32CD32); //Lime Green
+        //borderSquareCol.setColor(0xFF32CD32); //Lime Green
     }
     @Override
     public void onDraw(Canvas canvas) {
@@ -34,6 +34,7 @@ public class SquareView extends SurfaceView {
     }
 
     public void setOnClick(SquareController SC){
+        //Sets all of the buttons to be "listened" to when clicked.
         for(int f = 0; f < SM.totalNumSquare+1; f++){
             SM.buttonArr[f].setOnClickListener(SC);
         }
