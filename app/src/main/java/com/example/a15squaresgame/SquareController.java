@@ -14,7 +14,7 @@ public SquareController(SquareView initSV){
     SV = initSV;
     SM = SV.getSquareModel();
     //Initializes the correct base to compare the squares to.
-    for(int i = 1; i < SM.totalNumSquare + 1; i++){
+    for(int i = 1; i < SM.totalNumSquare; i++){
         SM.corrSquareNumOrder[i] = i;
     }
     randomizeSquares();
@@ -60,12 +60,28 @@ public void orderCheck(){
     }
 }
 
-public void squareFlip(int index, int indexSwitch){
-    if(index == indexSwitch+1 || index == indexSwitch-1 || index == indexSwitch + 4 || index ==indexSwitch - 4) {
-        int placeHolder = -420;
+public void squareFlip(int index){
+    //Rewrite to check for the "16" square next to it.
+    int placeHolder = -420;
+    if(index < SM.totalNumSquare && String.valueOf(SM.squareNumOrder[index + 1]).equals("16")) {
         placeHolder = SM.squareNumOrder[index];
-        SM.squareNumOrder[index] = SM.squareNumOrder[indexSwitch];
-        SM.squareNumOrder[indexSwitch] = placeHolder;
+        SM.squareNumOrder[index] = SM.squareNumOrder[index + 1];
+        SM.squareNumOrder[index + 1] = placeHolder;
+    }
+    else if(index > 0 && String.valueOf(SM.squareNumOrder[index - 1]).equals("16")){
+        placeHolder = SM.squareNumOrder[index];
+        SM.squareNumOrder[index] = SM.squareNumOrder[index - 1];
+        SM.squareNumOrder[index - 1] = placeHolder;
+    }
+    else if(index < 12 && String.valueOf(SM.squareNumOrder[index + 4]).equals("16")){
+        placeHolder = SM.squareNumOrder[index];
+        SM.squareNumOrder[index] = SM.squareNumOrder[index + 4];
+        SM.squareNumOrder[index + 4] = placeHolder;
+    }
+    else if(index >= 4 && String.valueOf(SM.squareNumOrder[index - 4]).equals("16")){
+        placeHolder = SM.squareNumOrder[index];
+        SM.squareNumOrder[index] = SM.squareNumOrder[index - 4];
+        SM.squareNumOrder[index - 4] = placeHolder;
     }
 }
 public void rewriteButtons() {
@@ -87,6 +103,12 @@ public void rewriteButtons() {
             SM.squareNumOrder = new int[SM.totalNumSquare];
             randomizeSquares();
             rewriteButtons();
+        }
+        for(int i = 0; i < SM.totalNumSquare; i++){
+            if(Button == SM.buttonArr[i]){
+                squareFlip(i);
+                SV.invalidate();
+            }
         }
     }
 }
