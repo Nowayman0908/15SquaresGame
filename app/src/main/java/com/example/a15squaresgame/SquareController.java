@@ -1,5 +1,6 @@
 package com.example.a15squaresgame;
 
+import android.graphics.Color;
 import android.util.Log;
 import android.view.View;
 import android.widget.SeekBar;
@@ -14,7 +15,7 @@ public SquareController(SquareView initSV){
     SV = initSV;
     SM = SV.getSquareModel();
     //Initializes the correct base to compare the squares to.
-    for(int i = 1; i < SM.totalNumSquare + 1; i++){
+    for(int i = 1; i < SM.totalNumSquare; i++){
         SM.corrSquareNumOrder[i] = i;
     }
     randomizeSquares();
@@ -87,6 +88,9 @@ public void rewriteButtons() {
             SM.squareNumOrder = new int[SM.totalNumSquare];
             randomizeSquares();
             rewriteButtons();
+        }
+        else {
+            Button.setBackgroundColor(Color.blue(255));
         }
     }
 }
