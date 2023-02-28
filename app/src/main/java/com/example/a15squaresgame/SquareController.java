@@ -1,10 +1,6 @@
 package com.example.a15squaresgame;
 
-import android.util.Log;
 import android.view.View;
-import android.widget.SeekBar;
-
-import java.util.Random;
 
 public class SquareController implements  View.OnClickListener{
 private SquareView SV;
@@ -62,8 +58,8 @@ public void orderCheck(){
 
 public void squareFlip(int index){
     //Rewrite to check for the "16" square next to it.
-    int placeHolder = -420;
-    if(index < SM.totalNumSquare && String.valueOf(SM.squareNumOrder[index + 1]).equals("16")) {
+    int placeHolder;
+    if(index < SM.totalNumSquare - 2 && String.valueOf(SM.squareNumOrder[index + 1]).equals("16")) {
         placeHolder = SM.squareNumOrder[index];
         SM.squareNumOrder[index] = SM.squareNumOrder[index + 1];
         SM.squareNumOrder[index + 1] = placeHolder;
@@ -73,7 +69,7 @@ public void squareFlip(int index){
         SM.squareNumOrder[index] = SM.squareNumOrder[index - 1];
         SM.squareNumOrder[index - 1] = placeHolder;
     }
-    else if(index < 12 && String.valueOf(SM.squareNumOrder[index + 4]).equals("16")){
+    else if(index <= 11 && String.valueOf(SM.squareNumOrder[index + 4]).equals("16")){
         placeHolder = SM.squareNumOrder[index];
         SM.squareNumOrder[index] = SM.squareNumOrder[index + 4];
         SM.squareNumOrder[index + 4] = placeHolder;
@@ -83,6 +79,7 @@ public void squareFlip(int index){
         SM.squareNumOrder[index] = SM.squareNumOrder[index - 4];
         SM.squareNumOrder[index - 4] = placeHolder;
     }
+    rewriteButtons();
 }
 public void rewriteButtons() {
     for (int s = 0; s < SM.totalNumSquare; s++) {
