@@ -59,21 +59,25 @@ public void orderCheck(){
 public void squareFlip(int index){
     //Rewrite to check for the "16" square next to it.
     int placeHolder;
+    //If the empty button is to the right of the clicked button.
     if(index < SM.totalNumSquare - 2 && String.valueOf(SM.squareNumOrder[index + 1]).equals("16")) {
         placeHolder = SM.squareNumOrder[index];
         SM.squareNumOrder[index] = SM.squareNumOrder[index + 1];
         SM.squareNumOrder[index + 1] = placeHolder;
     }
+    //If the empty button is to the left of the clicked button.
     else if(index > 0 && String.valueOf(SM.squareNumOrder[index - 1]).equals("16")){
         placeHolder = SM.squareNumOrder[index];
         SM.squareNumOrder[index] = SM.squareNumOrder[index - 1];
         SM.squareNumOrder[index - 1] = placeHolder;
     }
+    //If the empty button is above the clicked button.
     else if(index <= 11 && String.valueOf(SM.squareNumOrder[index + 4]).equals("16")){
         placeHolder = SM.squareNumOrder[index];
         SM.squareNumOrder[index] = SM.squareNumOrder[index + 4];
         SM.squareNumOrder[index + 4] = placeHolder;
     }
+    //If the empty button is below the clicked button.
     else if(index >= 4 && String.valueOf(SM.squareNumOrder[index - 4]).equals("16")){
         placeHolder = SM.squareNumOrder[index];
         SM.squareNumOrder[index] = SM.squareNumOrder[index - 4];

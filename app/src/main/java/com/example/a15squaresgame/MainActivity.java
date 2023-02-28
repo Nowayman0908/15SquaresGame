@@ -16,7 +16,6 @@ public class MainActivity extends AppCompatActivity {
         SquareController SC = new SquareController(SV);
         SquareModel SM = SV.getSquareModel();
 
-        //Spain without the s.
         SV.addButtons(0,findViewById(R.id.button1));
         SV.addButtons(1,findViewById(R.id.button2));
         SV.addButtons(2,findViewById(R.id.button3));
@@ -33,6 +32,7 @@ public class MainActivity extends AppCompatActivity {
         SV.addButtons(13,findViewById(R.id.button14));
         SV.addButtons(14,findViewById(R.id.button15));
         SV.addButtons(15,findViewById(R.id.button16));
+        //The reset button is added as well.
         SV.addButtons(16,findViewById(R.id.button17));
         SV.setOnClick(SC);
         SC.orderCheck();
