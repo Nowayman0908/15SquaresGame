@@ -1,8 +1,9 @@
+//author@ Ayden Semerak
+//date@ 02/27/2023
+
 package com.example.a15squaresgame;
 import android.widget.Button;
 import android.widget.TextView;
-
-import java.util.ArrayList;
 import java.util.Random;
 
 public class SquareModel {

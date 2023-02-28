@@ -1,9 +1,9 @@
+//author@ Ayden Semerak
+//date@ 02/27/2023
+
 package com.example.a15squaresgame;
-
 import androidx.appcompat.app.AppCompatActivity;
-
 import android.os.Bundle;
-import android.widget.SeekBar;
 
 public class MainActivity extends AppCompatActivity {
 
@@ -12,10 +12,11 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
+        //Finds the manually added SquareView in the activity xml code.
         SquareView SV = findViewById(R.id.squareview);
         SquareController SC = new SquareController(SV);
-        SquareModel SM = SV.getSquareModel();
 
+        //This is disgusting,there must be a better way but I can not think of it.
         SV.addButtons(0,findViewById(R.id.button1));
         SV.addButtons(1,findViewById(R.id.button2));
         SV.addButtons(2,findViewById(R.id.button3));
@@ -34,8 +35,12 @@ public class MainActivity extends AppCompatActivity {
         SV.addButtons(15,findViewById(R.id.button16));
         //The reset button is added as well.
         SV.addButtons(16,findViewById(R.id.button17));
+
+        //Sets the Square Controller to "listen" for clicks.
         SV.setOnClick(SC);
+        //Checks the order of the Squares.
         SC.orderCheck();
+        //Writes the Square text.
         SC.rewriteButtons();
     }
 }

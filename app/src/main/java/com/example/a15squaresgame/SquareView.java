@@ -1,20 +1,16 @@
 package com.example.a15squaresgame;
 import android.content.Context;
 import android.graphics.Canvas;
-import android.graphics.Color;
-import android.graphics.Paint;
+//author@ Ayden Semerak
+//date@ 02/27/2023
+
 import android.util.AttributeSet;
 import android.view.SurfaceView;
 import android.widget.Button;
 
 public class SquareView extends SurfaceView {
-    //Paint borderSquareCol = new Paint();
-    public static final float borderWidth = 1200.0f;
-    public static final float top = 1200.0f;
-    public static final float bottom = 120.0f;
-    public static final float borderLeft = 1200.0f;
 
-    private SquareModel SM;
+    private final SquareModel SM;
 
     public SquareView(Context context, AttributeSet attrs){
         super(context,attrs);
@@ -24,9 +20,7 @@ public class SquareView extends SurfaceView {
     }
     @Override
     public void onDraw(Canvas canvas) {
-        //Worry about later, the button is all that matters at the moment.
-        //canvas.drawRect(borderLeft,top,borderLeft + borderWidth, bottom, borderSquareCol);
-        //canvas.drawRect();
+
     }
 
     public void addButtons(int p, Button button){
